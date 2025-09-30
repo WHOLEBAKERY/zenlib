@@ -1,5 +1,5 @@
 -- Enhanced Modern Glassmorphism UI Library
--- Centered, Scrollable, More Visual Depth
+-- Centered, Scrollable, Original Size
 -- Compatible with original documentation
 
 local Lib = {}
@@ -53,7 +53,6 @@ function Lib.Window(Title)
 	local Main = Instance.new("Frame")
 	local MainCorner = Instance.new("UICorner")
 	local MainStroke = Instance.new("UIStroke")
-	local MainShadow = Instance.new("ImageLabel")
 	local TabFrame = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
 	local TabStroke = Instance.new("UIStroke")
@@ -68,7 +67,6 @@ function Lib.Window(Title)
 	local Extension = Instance.new("Frame")
 	local ExtensionCorner = Instance.new("UICorner")
 	local ContentHolder = Instance.new("Folder")
-	local TopBarGlow = Instance.new("Frame")
 
 	-- ========== SCREENGUI ==========
 	UiLib.Name = "ModernUiLib"
@@ -76,7 +74,7 @@ function Lib.Window(Title)
 	UiLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	UiLib.ResetOnSpawn = false
 
-	-- ========== MAIN FRAME (Enhanced Glassmorphism, Centered) ==========
+	-- ========== MAIN FRAME (Centered, Original Size) ==========
 	Main.Name = "Main"
 	Main.Parent = UiLib
 	Main.BackgroundColor3 = Color3.fromRGB(8, 12, 20)
@@ -84,40 +82,25 @@ function Lib.Window(Title)
 	Main.BorderSizePixel = 0
 	Main.AnchorPoint = Vector2.new(0.5, 0.5)
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
-	Main.Size = UDim2.new(0, 520, 0, 380)
+	Main.Size = UDim2.new(0, 454, 0, 333)
 	Main.ZIndex = 2
 
 	MainCorner.CornerRadius = UDim.new(0, 16)
 	MainCorner.Parent = Main
 
-	-- Enhanced border with glow effect
 	MainStroke.Parent = Main
 	MainStroke.Color = Color3.fromRGB(60, 150, 255)
 	MainStroke.Thickness = 2
 	MainStroke.Transparency = 0.2
 
-	-- Drop shadow for depth
-	MainShadow.Name = "Shadow"
-	MainShadow.Parent = Main
-	MainShadow.AnchorPoint = Vector2.new(0.5, 0.5)
-	MainShadow.BackgroundTransparency = 1
-	MainShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-	MainShadow.Size = UDim2.new(1, 40, 1, 40)
-	MainShadow.ZIndex = 1
-	MainShadow.Image = "rbxassetid://4560909609"
-	MainShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-	MainShadow.ImageTransparency = 0.6
-	MainShadow.ScaleType = Enum.ScaleType.Slice
-	MainShadow.SliceCenter = Rect.new(100, 100, 100, 100)
-
-	-- ========== TAB SIDEBAR (Enhanced) ==========
+	-- ========== TAB SIDEBAR ==========
 	TabFrame.Name = "TabFrame"
 	TabFrame.Parent = Main
 	TabFrame.BackgroundColor3 = Color3.fromRGB(12, 18, 30)
 	TabFrame.BackgroundTransparency = 0.15
 	TabFrame.BorderSizePixel = 0
-	TabFrame.Position = UDim2.new(0.022, 0, 0.145, 0)
-	TabFrame.Size = UDim2.new(0, 145, 0, 315)
+	TabFrame.Position = UDim2.new(0.0198237877, 0, 0.153153151, 0)
+	TabFrame.Size = UDim2.new(0, 134, 0, 275)
 	TabFrame.ZIndex = 4
 
 	UICorner.CornerRadius = UDim.new(0, 12)
@@ -134,10 +117,11 @@ function Lib.Window(Title)
 	TabNavigator.Active = true
 	TabNavigator.BackgroundTransparency = 1
 	TabNavigator.BorderSizePixel = 0
-	TabNavigator.Size = UDim2.new(1, 0, 1, 0)
+	TabNavigator.Position = UDim2.new(0.00733371312, 0, 0, 0)
+	TabNavigator.Size = UDim2.new(0, 132, 0, 275)
 	TabNavigator.ZIndex = 4
 	TabNavigator.CanvasSize = UDim2.new(0, 0, 0, 0)
-	TabNavigator.ScrollBarThickness = 5
+	TabNavigator.ScrollBarThickness = 4
 	TabNavigator.ScrollBarImageColor3 = Color3.fromRGB(60, 150, 255)
 	TabNavigator.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
@@ -150,13 +134,13 @@ function Lib.Window(Title)
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	UIListLayout.Padding = UDim.new(0, 10)
 	
-	-- ========== TOP BAR (Enhanced with Glow) ==========
+	-- ========== TOP BAR ==========
 	TopBar.Name = "TopBar"
 	TopBar.Parent = Main
 	TopBar.BackgroundColor3 = Color3.fromRGB(12, 22, 40)
 	TopBar.BackgroundTransparency = 0.05
 	TopBar.BorderSizePixel = 0
-	TopBar.Size = UDim2.new(1, 0, 0, 50)
+	TopBar.Size = UDim2.new(0, 454, 0, 45)
 	TopBar.ZIndex = 5
 
 	TopCorner.CornerRadius = UDim.new(0, 16)
@@ -167,28 +151,19 @@ function Lib.Window(Title)
 	TopStroke.Thickness = 2
 	TopStroke.Transparency = 0.3
 
-	-- Subtle top glow effect
-	TopBarGlow.Name = "TopBarGlow"
-	TopBarGlow.Parent = TopBar
-	TopBarGlow.BackgroundColor3 = Color3.fromRGB(60, 150, 255)
-	TopBarGlow.BackgroundTransparency = 0.9
-	TopBarGlow.BorderSizePixel = 0
-	TopBarGlow.Position = UDim2.new(0, 0, 1, -2)
-	TopBarGlow.Size = UDim2.new(1, 0, 0, 2)
-	TopBarGlow.ZIndex = 5
-
-	-- ========== TITLE (Enhanced) ==========
+	-- ========== TITLE ==========
 	LibraryTitle.Name = "LibraryTitle"
 	LibraryTitle.Parent = TopBar
 	LibraryTitle.BackgroundTransparency = 1
 	LibraryTitle.BorderSizePixel = 0
-	LibraryTitle.Position = UDim2.new(0.025, 0, 0.2, 0)
-	LibraryTitle.Size = UDim2.new(0, 320, 0, 30)
+	LibraryTitle.Position = UDim2.new(0.0194763951, 2, 0.169778883, -4)
+	LibraryTitle.Size = UDim2.new(0, 300, 0, 39)
 	LibraryTitle.ZIndex = 5
 	LibraryTitle.Font = Enum.Font.GothamBold
 	LibraryTitle.Text = Title
 	LibraryTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-	LibraryTitle.TextSize = 22
+	LibraryTitle.TextSize = 24
+	LibraryTitle.TextWrapped = true
 	LibraryTitle.TextXAlignment = Enum.TextXAlignment.Left
 
 	TitleGradient.Parent = LibraryTitle
@@ -203,8 +178,8 @@ function Lib.Window(Title)
 	Extension.BackgroundColor3 = Color3.fromRGB(12, 22, 40)
 	Extension.BackgroundTransparency = 0.05
 	Extension.BorderSizePixel = 0
-	Extension.Position = UDim2.new(0, 0, 1, 0)
-	Extension.Size = UDim2.new(1, 0, 0, -25)
+	Extension.Position = UDim2.new(0.00652175443, -3, 0.994062245, 0)
+	Extension.Size = UDim2.new(0, 454, 0, -23)
 	Extension.ZIndex = 4
 
 	ExtensionCorner.CornerRadius = UDim.new(0, 12)
@@ -255,18 +230,18 @@ function Lib.Window(Title)
 		local ContentLayout = Instance.new("UIListLayout")
 		local TabIcon = Instance.new("Frame")
 
-		-- ========== TAB BUTTON (Enhanced) ==========
+		-- ========== TAB BUTTON ==========
 		TabSwitcher.Name = "TabSwitcher"
 		TabSwitcher.Parent = TabNavigator
 		TabSwitcher.BackgroundColor3 = Color3.fromRGB(20, 35, 60)
 		TabSwitcher.BackgroundTransparency = 0.3
 		TabSwitcher.BorderSizePixel = 0
-		TabSwitcher.Size = UDim2.new(0, 125, 0, 32)
+		TabSwitcher.Size = UDim2.new(0, 114, 0, 28)
 		TabSwitcher.ZIndex = 4
 		TabSwitcher.Font = Enum.Font.GothamSemibold
 		TabSwitcher.Text = TabTitle
 		TabSwitcher.TextColor3 = Color3.fromRGB(200, 220, 255)
-		TabSwitcher.TextSize = 15
+		TabSwitcher.TextSize = 16
 		TabSwitcher.TextWrapped = true
 
 		TabCorner.CornerRadius = UDim.new(0, 8)
@@ -277,7 +252,6 @@ function Lib.Window(Title)
 		TabStroke.Thickness = 1.5
 		TabStroke.Transparency = 0.7
 
-		-- Tab selection indicator
 		TabIcon.Name = "TabIcon"
 		TabIcon.Parent = TabSwitcher
 		TabIcon.BackgroundColor3 = Color3.fromRGB(60, 150, 255)
@@ -293,12 +267,12 @@ function Lib.Window(Title)
 		TabContent.Active = true
 		TabContent.BackgroundTransparency = 1
 		TabContent.BorderSizePixel = 0
-		TabContent.Position = UDim2.new(0.32, 0, 0.145, 0)
-		TabContent.Size = UDim2.new(0, 338, 0, 315)
+		TabContent.Position = UDim2.new(0.331549704, 0, 0.153153151, 0)
+		TabContent.Size = UDim2.new(0, 295, 0, 275)
 		TabContent.ZIndex = 4
 		TabContent.ClipsDescendants = true
 		TabContent.CanvasSize = UDim2.new(0, 0, 0, 0)
-		TabContent.ScrollBarThickness = 5
+		TabContent.ScrollBarThickness = 4
 		TabContent.ScrollBarImageColor3 = Color3.fromRGB(60, 150, 255)
 		TabContent.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
@@ -309,7 +283,7 @@ function Lib.Window(Title)
 		ContentLayout.Parent = TabContent
 		ContentLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 		ContentLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		ContentLayout.Padding = UDim.new(0, 12)
+		ContentLayout.Padding = UDim.new(0, 10)
 
 		-- First tab is visible
 		if first then
@@ -327,7 +301,7 @@ function Lib.Window(Title)
 			TabIcon.BackgroundTransparency = 1
 		end
 
-		-- Tab switching with enhanced animations
+		-- Tab switching
 		TabSwitcher.MouseButton1Click:Connect(function()
 			for i,v in next, ContentHolder:GetChildren() do
 				v.Visible = false
@@ -380,7 +354,6 @@ function Lib.Window(Title)
 			local ButtonCorner = Instance.new("UICorner")
 			local ButtonStroke = Instance.new("UIStroke")
 			local TextLabel = Instance.new("TextLabel")
-			local Circle = Instance.new("ImageLabel")
 			local ButtonAccent = Instance.new("Frame")
 
 			ButtonFrame.Name = "ButtonFrame"
@@ -390,7 +363,7 @@ function Lib.Window(Title)
 			ButtonFrame.BackgroundTransparency = 0.15
 			ButtonFrame.BorderSizePixel = 0
 			ButtonFrame.ClipsDescendants = true
-			ButtonFrame.Size = UDim2.new(0, 310, 0, 42)
+			ButtonFrame.Size = UDim2.new(0, 267, 0, 38)
 			ButtonFrame.ZIndex = 4
 
 			ButtonCorner.CornerRadius = UDim.new(0, 10)
@@ -401,7 +374,6 @@ function Lib.Window(Title)
 			ButtonStroke.Thickness = 1.5
 			ButtonStroke.Transparency = 0.5
 
-			-- Accent line
 			ButtonAccent.Name = "ButtonAccent"
 			ButtonAccent.Parent = ButtonFrame
 			ButtonAccent.BackgroundColor3 = Color3.fromRGB(60, 150, 255)
@@ -414,7 +386,6 @@ function Lib.Window(Title)
 			ButtonTrigger.Parent = ButtonFrame
 			ButtonTrigger.BackgroundTransparency = 1
 			ButtonTrigger.BorderSizePixel = 0
-			ButtonTrigger.ClipsDescendants = true
 			ButtonTrigger.Size = UDim2.new(1, 0, 1, 0)
 			ButtonTrigger.ZIndex = 5
 			ButtonTrigger.Text = ""
@@ -425,21 +396,11 @@ function Lib.Window(Title)
 			TextLabel.Position = UDim2.new(0.06, 0, 0, 0)
 			TextLabel.Size = UDim2.new(0.88, 0, 1, 0)
 			TextLabel.ZIndex = 5
-			TextLabel.Font = Enum.Font.GothamMedium
+			TextLabel.Font = Enum.Font.Gotham
 			TextLabel.Text = BtnTitle
 			TextLabel.TextColor3 = Color3.fromRGB(230, 240, 255)
 			TextLabel.TextSize = 15
 			TextLabel.TextXAlignment = Enum.TextXAlignment.Center
-
-			Circle.Name = "Circle"
-			Circle.Parent = ButtonFrame
-			Circle.BackgroundTransparency = 1
-			Circle.Position = UDim2.new(0.5, 0, 0.5, 0)
-			Circle.ZIndex = 5
-			Circle.Image = "rbxassetid://4560909609"
-			Circle.ImageColor3 = Color3.fromRGB(80, 160, 255)
-
-			local ms = game.Players.LocalPlayer:GetMouse()
 
 			ButtonTrigger.MouseEnter:Connect(function()
 				tweenService:Create(ButtonFrame, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {
@@ -472,25 +433,7 @@ function Lib.Window(Title)
 				ClickSound.Volume = 2 
 				ClickSound.Pitch = 0.5
 				ClickSound:Play()
-
 				callback()
-
-				local c = Circle:Clone()
-				c.Parent = ButtonFrame
-				local x, y = (ms.X - c.AbsolutePosition.X), (ms.Y - c.AbsolutePosition.Y)
-				c.Position = UDim2.new(0, x, 0, y)
-				local len, size = 0.35, nil
-				if ButtonFrame.AbsoluteSize.X >= ButtonFrame.AbsoluteSize.Y then
-					size = (ButtonFrame.AbsoluteSize.X * 1.5)
-				else
-					size = (ButtonFrame.AbsoluteSize.Y * 1.5)
-				end
-				c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
-				for i = 1, 10 do
-					c.ImageTransparency = c.ImageTransparency + 0.05
-					wait(len / 12)
-				end
-				c:Destroy()
 			end)
 		end
 
@@ -518,8 +461,7 @@ function Lib.Window(Title)
 			SliderFrame.BackgroundColor3 = Color3.fromRGB(18, 30, 50)
 			SliderFrame.BackgroundTransparency = 0.15
 			SliderFrame.BorderSizePixel = 0
-			SliderFrame.ClipsDescendants = true
-			SliderFrame.Size = UDim2.new(0, 310, 0, 62)
+			SliderFrame.Size = UDim2.new(0, 267, 0, 55)
 			SliderFrame.ZIndex = 4
 
 			SliderCorner.CornerRadius = UDim.new(0, 10)
@@ -532,31 +474,31 @@ function Lib.Window(Title)
 
 			SliderLabel.Parent = SliderFrame
 			SliderLabel.BackgroundTransparency = 1
-			SliderLabel.Position = UDim2.new(0.05, 0, 0.1, 0)
-			SliderLabel.Size = UDim2.new(0, 180, 0, 22)
+			SliderLabel.Position = UDim2.new(0.05, 0, 0.05, 0)
+			SliderLabel.Size = UDim2.new(0, 160, 0, 25)
 			SliderLabel.ZIndex = 5
 			SliderLabel.Font = Enum.Font.GothamMedium
 			SliderLabel.Text = SliderTitle
-			SliderLabel.TextColor3 = Color3.fromRGB(230, 240, 255)
-			SliderLabel.TextSize = 15
+			SliderLabel.TextColor3 = Color3.fromRGB(220, 235, 255)
+			SliderLabel.TextSize = 16
 			SliderLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 			SliderTrigger.Parent = SliderFrame
 			SliderTrigger.BackgroundTransparency = 1
-			SliderTrigger.Position = UDim2.new(0.065, 0, 0.62, 0)
-			SliderTrigger.Size = UDim2.new(0, 270, 0, 10)
+			SliderTrigger.Position = UDim2.new(0.065, 0, 0.65, 0)
+			SliderTrigger.Size = UDim2.new(0, 230, 0, 8)
 			SliderTrigger.ZIndex = 5
 			SliderTrigger.Text = ""
 
 			SliderBack.Parent = SliderTrigger
-			SliderBack.BackgroundColor3 = Color3.fromRGB(12, 20, 35)
+			SliderBack.BackgroundColor3 = Color3.fromRGB(15, 25, 40)
 			SliderBack.BorderSizePixel = 0
 			SliderBack.Size = UDim2.new(1, 0, 1, 0)
 			SliderBack.ZIndex = 5
 			SliderBack.ClipsDescendants = true
 			
 			SliderFill.Parent = SliderBack
-			SliderFill.BackgroundColor3 = Color3.fromRGB(60, 150, 255)
+			SliderFill.BackgroundColor3 = Color3.fromRGB(50, 130, 255)
 			SliderFill.BorderSizePixel = 0
 			SliderFill.Size = UDim2.new(0, 0, 1, 0)
 			SliderFill.ZIndex = 5
@@ -569,13 +511,13 @@ function Lib.Window(Title)
 
 			ValueLabel.Parent = SliderFrame
 			ValueLabel.BackgroundTransparency = 1
-			ValueLabel.Position = UDim2.new(0.65, 0, 0.1, 0)
-			ValueLabel.Size = UDim2.new(0, 90, 0, 22)
+			ValueLabel.Position = UDim2.new(0.65, 0, 0.05, 0)
+			ValueLabel.Size = UDim2.new(0, 80, 0, 25)
 			ValueLabel.ZIndex = 5
 			ValueLabel.Font = Enum.Font.GothamBold
 			ValueLabel.Text = minvalue
 			ValueLabel.TextColor3 = Color3.fromRGB(100, 180, 255)
-			ValueLabel.TextSize = 15
+			ValueLabel.TextSize = 16
 			ValueLabel.TextTransparency = 1
 
 			local mouse = game.Players.LocalPlayer:GetMouse()
@@ -586,22 +528,22 @@ function Lib.Window(Title)
 				tweenService:Create(ValueLabel, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {
 					TextTransparency = 0
 				}):Play()
-				Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 269) * SliderFill.AbsoluteSize.X) + tonumber(minvalue)) or 0
+				Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 229) * SliderFill.AbsoluteSize.X) + tonumber(minvalue)) or 0
 				pcall(function()
 					callback(Value)
 				end)
-				SliderFill:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderFill.AbsolutePosition.X, 0, 269), 1, 0), "InOut", "Linear", 0.15, true)
+				SliderFill:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderFill.AbsolutePosition.X, 0, 229), 1, 0), "InOut", "Linear", 0.15, true)
 				moveconnection = mouse.Move:Connect(function()
 					ValueLabel.Text = Value
-					Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 269) * SliderFill.AbsoluteSize.X) + tonumber(minvalue))
+					Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 229) * SliderFill.AbsoluteSize.X) + tonumber(minvalue))
 					pcall(function()
 						callback(Value)
 					end)
-					SliderFill:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderFill.AbsolutePosition.X, 0, 269), 1, 0), "InOut", "Linear", 0.15, true)
+					SliderFill:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderFill.AbsolutePosition.X, 0, 229), 1, 0), "InOut", "Linear", 0.15, true)
 				end)
 				releaseconnection = uis.InputEnded:Connect(function(Mouse)
 					if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-						Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 269) * SliderFill.AbsoluteSize.X) + tonumber(minvalue))
+						Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 229) * SliderFill.AbsoluteSize.X) + tonumber(minvalue))
 						pcall(function()
 							callback(Value)
 						end)
@@ -609,7 +551,7 @@ function Lib.Window(Title)
 						tweenService:Create(ValueLabel, TweenInfo.new(0.1, Enum.EasingStyle.Linear), {
 							TextTransparency = 1
 						}):Play()
-						SliderFill:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderFill.AbsolutePosition.X, 0, 269), 1, 0), "InOut", "Linear", 0.15, true)
+						SliderFill:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderFill.AbsolutePosition.X, 0, 229), 1, 0), "InOut", "Linear", 0.15, true)
 						moveconnection:Disconnect()
 						releaseconnection:Disconnect()
 					end
@@ -632,7 +574,6 @@ function Lib.Window(Title)
 			local ToggleButtonCorner = Instance.new("UICorner")
 			local ToggleIndicator = Instance.new("Frame")
 			local IndicatorCorner = Instance.new("UICorner")
-			local ToggleGlow = Instance.new("Frame")
 
 			ToggleFrame.Name = "ToggleFrame"
 			ToggleFrame.Parent = TabContent
@@ -640,8 +581,7 @@ function Lib.Window(Title)
 			ToggleFrame.BackgroundColor3 = Color3.fromRGB(18, 30, 50)
 			ToggleFrame.BackgroundTransparency = 0.15
 			ToggleFrame.BorderSizePixel = 0
-			ToggleFrame.ClipsDescendants = true
-			ToggleFrame.Size = UDim2.new(0, 310, 0, 42)
+			ToggleFrame.Size = UDim2.new(0, 267, 0, 38)
 			ToggleFrame.ZIndex = 4
 
 			ButtonCorner.CornerRadius = UDim.new(0, 10)
@@ -655,12 +595,12 @@ function Lib.Window(Title)
 			ToggleLabel.Parent = ToggleFrame
 			ToggleLabel.BackgroundTransparency = 1
 			ToggleLabel.Position = UDim2.new(0.05, 0, 0, 0)
-			ToggleLabel.Size = UDim2.new(0, 200, 0, 42)
+			ToggleLabel.Size = UDim2.new(0, 180, 0, 38)
 			ToggleLabel.ZIndex = 5
-			ToggleLabel.Font = Enum.Font.GothamMedium
+			ToggleLabel.Font = Enum.Font.Gotham
 			ToggleLabel.Text = TogTXT
-			ToggleLabel.TextColor3 = Color3.fromRGB(230, 240, 255)
-			ToggleLabel.TextSize = 15
+			ToggleLabel.TextColor3 = Color3.fromRGB(220, 235, 255)
+			ToggleLabel.TextSize = 16
 			ToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 			ToggleTrigger.Parent = ToggleFrame
@@ -672,8 +612,8 @@ function Lib.Window(Title)
 			ToggleButton.Parent = ToggleFrame
 			ToggleButton.BackgroundColor3 = Color3.fromRGB(25, 35, 55)
 			ToggleButton.BorderSizePixel = 0
-			ToggleButton.Position = UDim2.new(0.8, 0, 0.26, 0)
-			ToggleButton.Size = UDim2.new(0, 45, 0, 20)
+			ToggleButton.Position = UDim2.new(0.82, 0, 0.25, 0)
+			ToggleButton.Size = UDim2.new(0, 40, 0, 19)
 			ToggleButton.ZIndex = 5
 
 			ToggleButtonCorner.CornerRadius = UDim.new(1, 0)
@@ -683,36 +623,20 @@ function Lib.Window(Title)
 			ToggleIndicator.BackgroundColor3 = Color3.fromRGB(100, 110, 130)
 			ToggleIndicator.BorderSizePixel = 0
 			ToggleIndicator.Position = UDim2.new(0.08, 0, 0.1, 0)
-			ToggleIndicator.Size = UDim2.new(0, 16, 0, 16)
+			ToggleIndicator.Size = UDim2.new(0, 15, 0, 15)
 			ToggleIndicator.ZIndex = 6
 
 			IndicatorCorner.CornerRadius = UDim.new(1, 0)
 			IndicatorCorner.Parent = ToggleIndicator
-
-			-- Glow effect for toggle
-			ToggleGlow.Parent = ToggleIndicator
-			ToggleGlow.BackgroundColor3 = Color3.fromRGB(100, 200, 255)
-			ToggleGlow.BackgroundTransparency = 1
-			ToggleGlow.BorderSizePixel = 0
-			ToggleGlow.Position = UDim2.new(-0.25, 0, -0.25, 0)
-			ToggleGlow.Size = UDim2.new(1.5, 0, 1.5, 0)
-			ToggleGlow.ZIndex = 5
-			
-			local GlowCorner = Instance.new("UICorner")
-			GlowCorner.CornerRadius = UDim.new(1, 0)
-			GlowCorner.Parent = ToggleGlow
 			
 			ToggleTrigger.MouseButton1Click:Connect(function()
 				if toggled == false then
 					tweenService:Create(ToggleIndicator, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
-						Position = UDim2.new(0.56, 0, 0.1, 0),
+						Position = UDim2.new(0.54, 0, 0.1, 0),
 						BackgroundColor3 = Color3.fromRGB(100, 200, 255)
 					}):Play()
 					tweenService:Create(ToggleButton, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
 						BackgroundColor3 = Color3.fromRGB(40, 100, 180)
-					}):Play()
-					tweenService:Create(ToggleGlow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
-						BackgroundTransparency = 0.5
 					}):Play()
 					
 					local ClickSound = Instance.new("Sound")
@@ -730,9 +654,6 @@ function Lib.Window(Title)
 					}):Play()
 					tweenService:Create(ToggleButton, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
 						BackgroundColor3 = Color3.fromRGB(25, 35, 55)
-					}):Play()
-					tweenService:Create(ToggleGlow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
-						BackgroundTransparency = 1
 					}):Play()
 
 					local ClickSound = Instance.new("Sound")
@@ -768,8 +689,7 @@ function Lib.Window(Title)
 			KeybindFrame.BackgroundColor3 = Color3.fromRGB(18, 30, 50)
 			KeybindFrame.BackgroundTransparency = 0.15
 			KeybindFrame.BorderSizePixel = 0
-			KeybindFrame.ClipsDescendants = true
-			KeybindFrame.Size = UDim2.new(0, 310, 0, 42)
+			KeybindFrame.Size = UDim2.new(0, 267, 0, 38)
 			KeybindFrame.ZIndex = 4
 
 			KeybindCorner.CornerRadius = UDim.new(0, 10)
@@ -783,20 +703,19 @@ function Lib.Window(Title)
 			KeybindLabel.Parent = KeybindFrame
 			KeybindLabel.BackgroundTransparency = 1
 			KeybindLabel.Position = UDim2.new(0.05, 0, 0, 0)
-			KeybindLabel.Size = UDim2.new(0, 180, 0, 42)
+			KeybindLabel.Size = UDim2.new(0, 150, 0, 38)
 			KeybindLabel.ZIndex = 5
 			KeybindLabel.Font = Enum.Font.GothamMedium
 			KeybindLabel.Text = KeybindTitle
-			KeybindLabel.TextColor3 = Color3.fromRGB(230, 240, 255)
-			KeybindLabel.TextSize = 15
+			KeybindLabel.TextColor3 = Color3.fromRGB(220, 235, 255)
+			KeybindLabel.TextSize = 16
 			KeybindLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 			Input.Parent = KeybindFrame
 			Input.BackgroundColor3 = Color3.fromRGB(25, 40, 70)
 			Input.BorderSizePixel = 0
-			Input.ClipsDescendants = true
-			Input.Position = UDim2.new(0.72, 0, 0.22, 0)
-			Input.Size = UDim2.new(0, 65, 0, 24)
+			Input.Position = UDim2.new(0.75, 0, 0.2, 0)
+			Input.Size = UDim2.new(0, 55, 0, 23)
 			Input.ZIndex = 5
 			Input.Font = Enum.Font.GothamBold
 			Input.Text = oldKey
@@ -854,8 +773,7 @@ function Lib.Window(Title)
 			TextboxFrame.BackgroundColor3 = Color3.fromRGB(18, 30, 50)
 			TextboxFrame.BackgroundTransparency = 0.15
 			TextboxFrame.BorderSizePixel = 0
-			TextboxFrame.ClipsDescendants = true
-			TextboxFrame.Size = UDim2.new(0, 310, 0, 68)
+			TextboxFrame.Size = UDim2.new(0, 267, 0, 60)
 			TextboxFrame.ZIndex = 4
 
 			TextboxCorner.CornerRadius = UDim.new(0, 10)
@@ -869,20 +787,19 @@ function Lib.Window(Title)
 			TextboxLabel.Parent = TextboxFrame
 			TextboxLabel.BackgroundTransparency = 1
 			TextboxLabel.Position = UDim2.new(0.05, 0, 0.08, 0)
-			TextboxLabel.Size = UDim2.new(0, 280, 0, 22)
+			TextboxLabel.Size = UDim2.new(0, 240, 0, 22)
 			TextboxLabel.ZIndex = 5
 			TextboxLabel.Font = Enum.Font.GothamMedium
 			TextboxLabel.Text = TextboxTitle
-			TextboxLabel.TextColor3 = Color3.fromRGB(230, 240, 255)
-			TextboxLabel.TextSize = 15
+			TextboxLabel.TextColor3 = Color3.fromRGB(220, 235, 255)
+			TextboxLabel.TextSize = 16
 			TextboxLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 			Input.Parent = TextboxFrame
 			Input.BackgroundColor3 = Color3.fromRGB(12, 20, 35)
 			Input.BorderSizePixel = 0
-			Input.ClipsDescendants = true
-			Input.Position = UDim2.new(0.08, 0, 0.52, 0)
-			Input.Size = UDim2.new(0, 260, 0, 26)
+			Input.Position = UDim2.new(0.08, 0, 0.55, 0)
+			Input.Size = UDim2.new(0, 225, 0, 22)
 			Input.ZIndex = 5
 			Input.Font = Enum.Font.Gotham
 			Input.PlaceholderText = "Type here..."
@@ -921,8 +838,8 @@ function Lib.Window(Title)
 			DropdownTitle = DropdownTitle or "Dropdown"
 			list = list or {}
 			local IsDropped = false
-			local DropYSize = 160
-			local NormalYSize = 42
+			local DropYSize = 145
+			local NormalYSize = 38
 			
 			local DropdownFrame = Instance.new("Frame")
 			local DropdownCorner = Instance.new("UICorner")
@@ -941,7 +858,7 @@ function Lib.Window(Title)
 			DropdownFrame.BackgroundTransparency = 0.15
 			DropdownFrame.BorderSizePixel = 0
 			DropdownFrame.ClipsDescendants = true
-			DropdownFrame.Size = UDim2.new(0, 310, 0, NormalYSize)
+			DropdownFrame.Size = UDim2.new(0, 267, 0, NormalYSize)
 			DropdownFrame.ZIndex = 4
 
 			DropdownCorner.CornerRadius = UDim.new(0, 10)
@@ -955,12 +872,12 @@ function Lib.Window(Title)
 			DropdownLabel.Parent = DropdownFrame
 			DropdownLabel.BackgroundTransparency = 1
 			DropdownLabel.Position = UDim2.new(0.05, 0, 0, 0)
-			DropdownLabel.Size = UDim2.new(0, 230, 0, 42)
+			DropdownLabel.Size = UDim2.new(0, 200, 0, 38)
 			DropdownLabel.ZIndex = 5
-			DropdownLabel.Font = Enum.Font.GothamMedium
+			DropdownLabel.Font = Enum.Font.Gotham
 			DropdownLabel.Text = DropdownTitle
-			DropdownLabel.TextColor3 = Color3.fromRGB(230, 240, 255)
-			DropdownLabel.TextSize = 15
+			DropdownLabel.TextColor3 = Color3.fromRGB(220, 235, 255)
+			DropdownLabel.TextSize = 16
 			DropdownLabel.TextXAlignment = Enum.TextXAlignment.Left
 	
 			DropArrow.Parent = DropdownFrame
@@ -975,7 +892,7 @@ function Lib.Window(Title)
 			
 			DropdownTrigger.Parent = DropdownFrame
 			DropdownTrigger.BackgroundTransparency = 1
-			DropdownTrigger.Size = UDim2.new(1, 0, 0, 42)
+			DropdownTrigger.Size = UDim2.new(1, 0, 0, 38)
 			DropdownTrigger.ZIndex = 5
 			DropdownTrigger.Text = ""
 			
@@ -992,7 +909,7 @@ function Lib.Window(Title)
 					}):Play()
 					
 					tweenService:Create(DropdownFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
-						Size = UDim2.new(0, 310, 0, DropYSize)
+						Size = UDim2.new(0, 267, 0, DropYSize)
 					}):Play()
 					DropdownContainer.Visible = true
 					ClickSound:Play()
@@ -1009,7 +926,7 @@ function Lib.Window(Title)
 					}):Play()
 
 					tweenService:Create(DropdownFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
-						Size = UDim2.new(0, 310, 0, NormalYSize)
+						Size = UDim2.new(0, 267, 0, NormalYSize)
 					}):Play()
 					DropdownContainer.Visible = false
 					ClickSound:Play()
@@ -1022,7 +939,7 @@ function Lib.Window(Title)
 			DropdownContainer.BackgroundTransparency = 1
 			DropdownContainer.BorderSizePixel = 0
 			DropdownContainer.Position = UDim2.new(0.06, 0, 0.32, 0)
-			DropdownContainer.Size = UDim2.new(0, 275, 0, 100)
+			DropdownContainer.Size = UDim2.new(0, 237, 0, 100)
 			DropdownContainer.ZIndex = 5
 			DropdownContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
 			DropdownContainer.Visible = false
@@ -1044,10 +961,10 @@ function Lib.Window(Title)
 				Option.BackgroundColor3 = Color3.fromRGB(25, 40, 70)
 				Option.BackgroundTransparency = 0.2
 				Option.BorderSizePixel = 0
-				Option.Size = UDim2.new(0, 260, 0, 28)
+				Option.Size = UDim2.new(0, 220, 0, 26)
 				Option.Font = Enum.Font.Gotham
 				Option.Text = v
-				Option.TextColor3 = Color3.fromRGB(210, 230, 255)
+				Option.TextColor3 = Color3.fromRGB(200, 220, 255)
 				Option.TextSize = 14
 				Option.MouseButton1Click:Connect(function()
 					local ClickSound = Instance.new("Sound")
@@ -1064,7 +981,7 @@ function Lib.Window(Title)
 					}):Play()
 					
 					tweenService:Create(DropdownFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
-						Size = UDim2.new(0, 310, 0, NormalYSize)
+						Size = UDim2.new(0, 267, 0, NormalYSize)
 					}):Play()
 					DropdownContainer.Visible = false		
 					IsDropped = false
@@ -1101,7 +1018,6 @@ function Lib.Window(Title)
 			local LabelStroke = Instance.new("UIStroke")
 			local LabelText = Instance.new("TextLabel")
 			local LabelGradient = Instance.new("UIGradient")
-			local LabelAccent = Instance.new("Frame")
 			
 			LabelFrame.Name = "LabelFrame"
 			LabelFrame.Parent = TabContent
@@ -1109,8 +1025,7 @@ function Lib.Window(Title)
 			LabelFrame.BackgroundColor3 = Color3.fromRGB(20, 40, 65)
 			LabelFrame.BackgroundTransparency = 0.2
 			LabelFrame.BorderSizePixel = 0
-			LabelFrame.ClipsDescendants = true
-			LabelFrame.Size = UDim2.new(0, 310, 0, 38)
+			LabelFrame.Size = UDim2.new(0, 267, 0, 35)
 			LabelFrame.ZIndex = 4
 
 			LabelCorner.CornerRadius = UDim.new(0, 10)
@@ -1121,13 +1036,6 @@ function Lib.Window(Title)
 			LabelStroke.Thickness = 1.5
 			LabelStroke.Transparency = 0.4
 
-			LabelAccent.Parent = LabelFrame
-			LabelAccent.BackgroundColor3 = Color3.fromRGB(60, 150, 255)
-			LabelAccent.BackgroundTransparency = 0.6
-			LabelAccent.BorderSizePixel = 0
-			LabelAccent.Size = UDim2.new(1, 0, 0, 2)
-			LabelAccent.ZIndex = 5
-
 			LabelText.Parent = LabelFrame
 			LabelText.BackgroundTransparency = 1
 			LabelText.Position = UDim2.new(0.05, 0, 0, 0)
@@ -1136,7 +1044,7 @@ function Lib.Window(Title)
 			LabelText.Font = Enum.Font.GothamBold
 			LabelText.Text = LabelTitle
 			LabelText.TextColor3 = Color3.fromRGB(255, 255, 255)
-			LabelText.TextSize = 16
+			LabelText.TextSize = 17
 			LabelText.TextScaled = true
 			LabelText.TextXAlignment = Enum.TextXAlignment.Center
 
@@ -1163,8 +1071,7 @@ function Lib.Window(Title)
 			DividerFrame.BackgroundColor3 = Color3.fromRGB(18, 30, 50)
 			DividerFrame.BackgroundTransparency = 0.7
 			DividerFrame.BorderSizePixel = 0
-			DividerFrame.ClipsDescendants = false
-			DividerFrame.Size = UDim2.new(0, 310, 0, 28)
+			DividerFrame.Size = UDim2.new(0, 267, 0, 25)
 			DividerFrame.ZIndex = 4
 
 			DividerCorner.CornerRadius = UDim.new(0, 8)
@@ -1172,10 +1079,10 @@ function Lib.Window(Title)
 
 			DividerText.Parent = DividerFrame
 			DividerText.BackgroundTransparency = 1
-			DividerText.Position = UDim2.new(0.28, 0, 0, 0)
-			DividerText.Size = UDim2.new(0, 135, 0, 28)
+			DividerText.Position = UDim2.new(0.3, 0, 0, 0)
+			DividerText.Size = UDim2.new(0, 110, 0, 25)
 			DividerText.ZIndex = 5
-			DividerText.Font = Enum.Font.GothamBold
+			DividerText.Font = Enum.Font.GothamSemibold
 			DividerText.Text = DividerTitle
 			DividerText.TextColor3 = Color3.fromRGB(150, 190, 230)
 			DividerText.TextSize = 14
@@ -1185,7 +1092,7 @@ function Lib.Window(Title)
 			LeftLine.BackgroundTransparency = 0.4
 			LeftLine.BorderSizePixel = 0
 			LeftLine.Position = UDim2.new(0.05, 0, 0.48, 0)
-			LeftLine.Size = UDim2.new(0, 70, 0, 2)
+			LeftLine.Size = UDim2.new(0, 60, 0, 2)
 			LeftLine.ZIndex = 4
 
 			LeftCorner.CornerRadius = UDim.new(1, 0)
@@ -1196,7 +1103,7 @@ function Lib.Window(Title)
 			RightLine.BackgroundTransparency = 0.4
 			RightLine.BorderSizePixel = 0
 			RightLine.Position = UDim2.new(0.72, 0, 0.48, 0)
-			RightLine.Size = UDim2.new(0, 70, 0, 2)
+			RightLine.Size = UDim2.new(0, 60, 0, 2)
 			RightLine.ZIndex = 4
 
 			RightCorner.CornerRadius = UDim.new(1, 0)
