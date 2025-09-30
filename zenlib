@@ -1,200 +1,213 @@
--- ZenScript UI Library v1.0
--- A fully customized version of LibTest.lua
--- Designed by Master Shane
-
+-- ZenScript Library v2
+-- Fully functional UI with theme and tabs
 local Library = {}
 
 -- Services
-local tweenService = game:GetService("TweenService")
-local UIS = game:GetService("UserInputService")
 local Players = game:GetService("Players")
-local CoreGui = game:GetService("CoreGui")
+local RunService = game:GetService("RunService")
+local UIS = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
 
--- Theme Configuration
+-- Theme
 Library.Theme = {
-    Background = Color3.fromRGB(31, 25, 44),
+    Background = Color3.fromRGB(0, 0, 0),
     BackgroundTransparency = 0.6,
     Accent = Color3.fromRGB(37, 99, 235),
-    Text = Color3.fromRGB(255, 255, 255),
+    TextColor = Color3.fromRGB(255, 255, 255),
     Font = Enum.Font.GothamBold
 }
 
--- Dragging Functionality
+-- Drag function
 function Library:Drag(frame, parent)
-    local dragToggle = nil
-    local dragSpeed = 0.25
-    local dragStart = nil
-    local startPos = nil
-
-    local function updateInput(input)
+    local dragging = false
+    local dragInput, dragStart, startPos
+    local function update(input)
         local delta = input.Position - dragStart
-        local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-        tweenService:Create(parent, TweenInfo.new(dragSpeed), {Position = position}):Play()
+        parent.Position = UDim2.new(
+            startPos.X.Scale,
+            startPos.X.Offset + delta.X,
+            startPos.Y.Scale,
+            startPos.Y.Offset + delta.Y
+        )
     end
 
     frame.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-            dragToggle = true
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = true
             dragStart = input.Position
             startPos = parent.Position
             input.Changed:Connect(function()
                 if input.UserInputState == Enum.UserInputState.End then
-                    dragToggle = false
+                    dragging = false
                 end
             end)
         end
     end)
 
+    frame.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement then
+            dragInput = input
+        end
+    end)
+
     UIS.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-            if dragToggle then
-                updateInput(input)
-            end
+        if dragging and input == dragInput then
+            update(input)
         end
     end)
 end
 
--- Window Creation
-function Library:Window(Title)
-    Title = Title or "ZenScript"
+-- Create Window
+function Library:Window(title)
+    title = title or "ZenScript"
 
-    local UiLib = Instance.new("ScreenGui")
-    local Main = Instance.new("Frame")
-    local MainCorner = Instance.new("UICorner")
-    local TabFrame = Instance.new("Frame")
-    local UICorner = Instance.new("UICorner")
-    local TabNavigator = Instance.new("ScrollingFrame")
-    local UIPadding = Instance.new("UIPadding")
-    local UIListLayout = Instance.new("UIListLayout")
-    local TopBar = Instance.new("Frame")
-    local TopCorner = Instance.new("UICorner")
-    local LibraryTitle = Instance.new("TextLabel")
-    local Extension = Instance.new("Frame")
-    local ExtensionCorner = Instance.new("UICorner")
-    local ContentHolder = Instance.new("Folder")
-    local TabContent = Instance.new("ScrollingFrame")
-    local ContentPadding = Instance.new("UIPadding")
-    local ContentLayout = Instance.new("UIListLayout")
+    local player = Players.LocalPlayer
+    local playerGui = player:WaitForChild("PlayerGui")
 
-    -- Properties
-    UiLib.Name = "UiLib"
-    UiLib.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
-    UiLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "ZenScriptUI"
+    screenGui.Parent = playerGui
 
-    Main.Name = "Main"
-    Main.Parent = UiLib
-    Main.BackgroundColor3 = Library.Theme.Background
-    Main.BorderSizePixel = 0
-    Main.Position = UDim2.new(0.303, 0, 0.292, 0)
-    Main.Size = UDim2.new(0, 454, 0, 333)
-    Main.ZIndex = 2
-    MainCorner.CornerRadius = UDim.new(0, 15)
-    MainCorner.Parent = Main
+    -- Main window
+    local window = Instance.new("Frame")
+    window.Name = "MainWindow"
+    window.Size = UDim2.new(0, 400, 0, 300)
+    window.Position = UDim2.new(0.5, -200, 0.5, -150)
+    window.BackgroundColor3 = Library.Theme.Background
+    window.BackgroundTransparency = Library.Theme.BackgroundTransparency
+    window.BorderSizePixel = 0
+    window.Parent = screenGui
 
-    TabFrame.Name = "TabFrame"
-    TabFrame.Parent = Main
-    TabFrame.BackgroundColor3 = Color3.fromRGB(18, 15, 24)
-    TabFrame.BorderSizePixel = 0
-    TabFrame.Position = UDim2.new(0.02, 0, 0.153, 0)
-    TabFrame.Size = UDim2.new(0, 134, 0, 275)
-    TabFrame.ZIndex = 4
-    UICorner.CornerRadius = UDim.new(0, 7)
-    UICorner.Parent = TabFrame
+    -- Rounded corners
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0, 12)
+    corner.Parent = window
 
-    TabNavigator.Name = "TabNavigator"
-    TabNavigator.Parent = TabFrame
-    TabNavigator.Active = true
-    TabNavigator.BackgroundTransparency = 1
-    TabNavigator.BorderSizePixel = 0
-    TabNavigator.Position = UDim2.new(0.007, 0, 0, 0)
-    TabNavigator.Size = UDim2.new(0, 132, 0, 275)
-    TabNavigator.ZIndex = 4
-    TabNavigator.CanvasSize = UDim2.new(0, 0, 0, 0)
-    UIPadding.Parent = TabNavigator
-    UIPadding.PaddingTop = UDim.new(0, 12)
-    UIListLayout.Parent = TabNavigator
-    UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    UIListLayout.Padding = UDim.new(0, 19)
+    -- Top bar
+    local topBar = Instance.new("Frame")
+    topBar.Size = UDim2.new(1, 0, 0, 40)
+    topBar.BackgroundColor3 = Library.Theme.Background
+    topBar.BackgroundTransparency = 0
+    topBar.Parent = window
 
-    self:Drag(TopBar, Main)
+    local topCorner = Instance.new("UICorner")
+    topCorner.CornerRadius = UDim.new(0, 12)
+    topCorner.Parent = topBar
 
-    -- Toggle UI
-    function Library:ToggleUI()
-        if UiLib.Enabled then
-            local ClickSound = Instance.new("Sound")
-            ClickSound.Parent = UiLib
-            ClickSound.SoundId = "rbxassetid://552900451"
-            ClickSound.Volume = 2
-            ClickSound.Pitch = 1.2
-            UiLib.Enabled = false
-            ClickSound:Play()
-            wait(0.5)
-            ClickSound:Destroy()
-        else
-            local ClickSound = Instance.new("Sound")
-            ClickSound.Parent = UiLib
-            ClickSound.SoundId = "rbxassetid://552900451"
-            ClickSound.Volume = 2
-            ClickSound.Pitch = 1
-            UiLib.Enabled = true
-            ClickSound:Play()
-            wait(0.5)
-            ClickSound:Destroy()
+    -- Title
+    local titleLabel = Instance.new("TextLabel")
+    titleLabel.Text = title
+    titleLabel.Font = Library.Theme.Font
+    titleLabel.TextColor3 = Library.Theme.TextColor
+    titleLabel.TextSize = 20
+    titleLabel.BackgroundTransparency = 1
+    titleLabel.Size = UDim2.new(1, -10, 1, 0)
+    titleLabel.Position = UDim2.new(0, 10, 0, 0)
+    titleLabel.Parent = topBar
+
+    -- Dragging
+    Library:Drag(topBar, window)
+
+    -- Tabs
+    local tabContainer = Instance.new("Frame")
+    tabContainer.Size = UDim2.new(1, 0, 1, -40)
+    tabContainer.Position = UDim2.new(0, 0, 0, 40)
+    tabContainer.BackgroundTransparency = 1
+    tabContainer.Parent = window
+
+    local tabs = {}
+    local function CreateTab(tabName)
+        local tabButton = Instance.new("TextButton")
+        tabButton.Text = tabName
+        tabButton.Font = Library.Theme.Font
+        tabButton.TextColor3 = Library.Theme.TextColor
+        tabButton.BackgroundColor3 = Library.Theme.Accent
+        tabButton.Size = UDim2.new(0, 100, 0, 30)
+        tabButton.Position = UDim2.new(#tabs * 0.25, 10, 0, 5)
+        tabButton.Parent = topBar
+
+        -- Content
+        local content = Instance.new("ScrollingFrame")
+        content.Size = UDim2.new(1, 0, 1, 0)
+        content.BackgroundTransparency = 1
+        content.Parent = tabContainer
+        content.Visible = (#tabs==0) -- first tab visible
+        content.CanvasSize = UDim2.new(0, 0, 0, 0)
+        content.AutomaticCanvasSize = Enum.AutomaticSize.Y
+
+        tabButton.MouseButton1Click:Connect(function()
+            for _, t in pairs(tabs) do
+                t.Content.Visible = false
+            end
+            content.Visible = true
+        end)
+
+        local layout = Instance.new("UIListLayout")
+        layout.Padding = UDim.new(0, 10)
+        layout.Parent = content
+
+        local TabData = {}
+        TabData.Button = tabButton
+        TabData.Content = content
+
+        -- Create button
+        function TabData:CreateButton(text, callback)
+            local btn = Instance.new("TextButton")
+            btn.Text = text
+            btn.Font = Library.Theme.Font
+            btn.TextColor3 = Library.Theme.TextColor
+            btn.BackgroundColor3 = Library.Theme.Accent
+            btn.Size = UDim2.new(1, -20, 0, 30)
+            btn.Parent = content
+            btn.MouseButton1Click:Connect(callback)
         end
+
+        -- Create toggle
+        function TabData:CreateToggle(text, callback)
+            local frame = Instance.new("Frame")
+            frame.Size = UDim2.new(1, -20, 0, 30)
+            frame.BackgroundTransparency = 1
+            frame.Parent = content
+
+            local label = Instance.new("TextLabel")
+            label.Text = text
+            label.Font = Library.Theme.Font
+            label.TextColor3 = Library.Theme.TextColor
+            label.Size = UDim2.new(0.8, 0, 1, 0)
+            label.BackgroundTransparency = 1
+            label.Parent = frame
+
+            local toggle = Instance.new("TextButton")
+            toggle.Size = UDim2.new(0.2, -5, 1, -5)
+            toggle.Position = UDim2.new(0.8, 5, 0, 0)
+            toggle.BackgroundColor3 = Library.Theme.Accent
+            toggle.Text = "OFF"
+            toggle.Font = Library.Theme.Font
+            toggle.TextColor3 = Library.Theme.TextColor
+            toggle.Parent = frame
+
+            local state = false
+            toggle.MouseButton1Click:Connect(function()
+                state = not state
+                toggle.Text = state and "ON" or "OFF"
+                callback(state)
+            end)
+        end
+
+        table.insert(tabs, TabData)
+        return TabData
     end
 
-    -- Top Bar
-    TopBar.Name = "TopBar"
-    TopBar.Parent = Main
-    TopBar.BackgroundColor3 = Color3.fromRGB(18, 15, 24)
-    TopBar.BorderSizePixel = 0
-    TopBar.Size = UDim2.new(0, 454, 0, 45)
-    TopBar.ZIndex = 5
-    TopCorner.CornerRadius = UDim.new(0, 15)
-    TopCorner.Parent = TopBar
-
-    LibraryTitle.Name = "LibraryTitle"
-    LibraryTitle.Parent = TopBar
-    LibraryTitle.BackgroundTransparency = 1
-    LibraryTitle.Position = UDim2.new(0.02, 2, 0.17, -4)
-    LibraryTitle.Size = UDim2.new(0, 300, 0, 39)
-    LibraryTitle.ZIndex = 5
-    LibraryTitle.Font = Library.Theme.Font
-    LibraryTitle.Text = Title
-    LibraryTitle.TextColor3 = Library.Theme.Text
-    LibraryTitle.TextSize = 20
-    LibraryTitle.TextXAlignment = Enum.TextXAlignment.Left
-
-    Extension.Name = "Extension"
-    Extension.Parent = TopBar
-    Extension.BackgroundColor3 = Color3.fromRGB(18, 15, 24)
-    Extension.BorderSizePixel = 0
-    Extension.Position = UDim2.new(0.96, 0, 0, 0)
-    Extension.Size = UDim2.new(0, 18, 0, 45)
-    Extension.ZIndex = 5
-    ExtensionCorner.CornerRadius = UDim.new(0, 15)
-    ExtensionCorner.Parent = Extension
-
-    ContentHolder.Name = "ContentHolder"
-    ContentHolder.Parent = UiLib
-
-    TabContent.Name = "TabContent"
-    TabContent.Parent = ContentHolder
-    TabContent.Active = true
-    TabContent.BackgroundTransparency = 1
-    TabContent.BorderSizePixel = 0
-    TabContent.Position = UDim2.new(0.2, 0, 0, 0)
-    TabContent.Size = UDim2.new(0, 320, 0, 333)
-    TabContent.ZIndex = 4
-    ContentPadding.Parent = TabContent
-    ContentPadding.PaddingTop = UDim.new(0, 12)
-    ContentLayout.Parent = TabContent
-    ContentLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    ContentLayout.Padding = UDim.new(0, 10)
-
-    -- Return the library
+    Library.CreateTab = CreateTab
+    Library.MainWindow = window
     return Library
+end
+
+-- Toggle UI function
+function Library:ToggleUI()
+    if self.MainWindow then
+        self.MainWindow.Visible = not self.MainWindow.Visible
+    end
 end
 
 return Library
