@@ -301,7 +301,7 @@ function Lib.Window(Title)
 			ButtonFrame.Name = "ButtonFrame"
 			ButtonFrame.Parent = TabContent
 			ButtonFrame.Active = true
-			ButtonFrame.BackgroundColor3 = Color3.fromRGB(53, 50, 74)
+			ButtonFrame.BackgroundColor3 = Color3.fromRGB(30, 60, 180)
 			ButtonFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			ButtonFrame.BorderSizePixel = 0
 			ButtonFrame.ClipsDescendants = true
@@ -420,7 +420,7 @@ function Lib.Window(Title)
 			SliderFrame.Name = "SliderFrame"
 			SliderFrame.Parent = TabContent
 			SliderFrame.Active = true
-			SliderFrame.BackgroundColor3 = Color3.fromRGB(53, 50, 74)
+			SliderFrame.BackgroundColor3 = Color3.fromRGB(30, 60, 180)
 			SliderFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SliderFrame.BorderSizePixel = 0
 			SliderFrame.ClipsDescendants = true
@@ -567,7 +567,7 @@ function Lib.Window(Title)
 			ToggleFrame.Name = "ToggleFrame"
 			ToggleFrame.Parent = TabContent
 			ToggleFrame.Active = true
-			ToggleFrame.BackgroundColor3 = Color3.fromRGB(53, 50, 74)
+			ToggleFrame.BackgroundColor3 = Color3.fromRGB(30, 60, 180)
 			ToggleFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			ToggleFrame.BorderSizePixel = 0
 			ToggleFrame.ClipsDescendants = true
@@ -738,7 +738,7 @@ function Lib.Window(Title)
 			KeybindFrame.Name = "KeybindFrame"
 			KeybindFrame.Parent = TabContent
 			KeybindFrame.Active = true
-			KeybindFrame.BackgroundColor3 = Color3.fromRGB(53, 50, 74)
+			KeybindFrame.BackgroundColor3 = Color3.fromRGB(30, 60, 180)
 			KeybindFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			KeybindFrame.BorderSizePixel = 0
 			KeybindFrame.ClipsDescendants = true
@@ -847,7 +847,7 @@ function Lib.Window(Title)
 			TextboxFrame.Name = "TextboxFrame"
 			TextboxFrame.Parent = TabContent
 			TextboxFrame.Active = true
-			TextboxFrame.BackgroundColor3 = Color3.fromRGB(53, 50, 74)
+			TextboxFrame.BackgroundColor3 = Color3.fromRGB(30, 60, 180)
 			TextboxFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			TextboxFrame.BorderSizePixel = 0
 			TextboxFrame.ClipsDescendants = true
@@ -944,7 +944,7 @@ function Lib.Window(Title)
 			DropdownFrame.Name = "DropdownFrame"
 			DropdownFrame.Parent = TabContent
 			DropdownFrame.Active = true
-			DropdownFrame.BackgroundColor3 = Color3.fromRGB(53, 50, 74)
+			DropdownFrame.BackgroundColor3 = Color3.fromRGB(30, 60, 180)
 			DropdownFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			DropdownFrame.BorderSizePixel = 0
 			DropdownFrame.ClipsDescendants = true
@@ -1031,7 +1031,7 @@ function Lib.Window(Title)
 
 			DropdownContainer.Parent = DropdownFrame
 			DropdownContainer.Active = true
-			DropdownContainer.BackgroundColor3 = Color3.fromRGB(53, 50, 74)
+			DropdownContainer.BackgroundColor3 = Color3.fromRGB(30, 60, 180)
 			DropdownContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			DropdownContainer.BackgroundTransparency = 1
 			DropdownContainer.BorderSizePixel = 0
@@ -1103,7 +1103,7 @@ function Lib.Window(Title)
 			LabelFrame.Name = "LabelFrame"
 			LabelFrame.Parent = TabContent
 			LabelFrame.Active = true
-			LabelFrame.BackgroundColor3 = Color3.fromRGB(53, 50, 74)
+			LabelFrame.BackgroundColor3 = Color3.fromRGB(30, 60, 180)
 			LabelFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			LabelFrame.BorderSizePixel = 0
 			LabelFrame.ClipsDescendants = true
@@ -1153,7 +1153,7 @@ function Lib.Window(Title)
 			DividerFrame.Name = "DividerFrame"
 			DividerFrame.Parent = TabContent
 			DividerFrame.Active = true
-			DividerFrame.BackgroundColor3 = Color3.fromRGB(53, 50, 74)
+			DividerFrame.BackgroundColor3 = Color3.fromRGB(30, 60, 180)
 			DividerFrame.BackgroundTransparency = 0.500
 			DividerFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			DividerFrame.BorderSizePixel = 0
