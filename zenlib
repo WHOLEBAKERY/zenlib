@@ -1,5 +1,5 @@
 -- Enhanced Modern Glassmorphism UI Library
--- Centered, Scrollable, Original Size
+-- Centered, Scrollable, Original Size with Minimizer
 -- Compatible with original documentation
 
 local Lib = {}
@@ -67,6 +67,17 @@ function Lib.Window(Title)
 	local Extension = Instance.new("Frame")
 	local ExtensionCorner = Instance.new("UICorner")
 	local ContentHolder = Instance.new("Folder")
+	
+	-- Minimizer Box
+	local MinimizerBox = Instance.new("Frame")
+	local MinimizerCorner = Instance.new("UICorner")
+	local MinimizerStroke = Instance.new("UIStroke")
+	local MinimizerIcon = Instance.new("ImageLabel")
+	local MinimizerButton = Instance.new("TextButton")
+	
+	-- Minimize Button on Window
+	local MinimizeButton = Instance.new("TextButton")
+	local MinimizeCorner = Instance.new("UICorner")
 
 	-- ========== SCREENGUI ==========
 	UiLib.Name = "ModernUiLib"
@@ -172,6 +183,56 @@ function Lib.Window(Title)
 		ColorSequenceKeypoint.new(1, Color3.fromRGB(60, 150, 255))
 	}
 
+	-- ========== MINIMIZE BUTTON ==========
+	MinimizeButton.Name = "MinimizeButton"
+	MinimizeButton.Parent = TopBar
+	MinimizeButton.BackgroundColor3 = Color3.fromRGB(30, 50, 80)
+	MinimizeButton.BackgroundTransparency = 0.2
+	MinimizeButton.BorderSizePixel = 0
+	MinimizeButton.Position = UDim2.new(0.92, 0, 0.22, 0)
+	MinimizeButton.Size = UDim2.new(0, 25, 0, 25)
+	MinimizeButton.ZIndex = 6
+	MinimizeButton.Font = Enum.Font.GothamBold
+	MinimizeButton.Text = "−"
+	MinimizeButton.TextColor3 = Color3.fromRGB(200, 220, 255)
+	MinimizeButton.TextSize = 20
+
+	MinimizeCorner.CornerRadius = UDim.new(0, 6)
+	MinimizeCorner.Parent = MinimizeButton
+
+	-- ========== MINIMIZER BOX ==========
+	MinimizerBox.Name = "MinimizerBox"
+	MinimizerBox.Parent = UiLib
+	MinimizerBox.BackgroundColor3 = Color3.fromRGB(20, 40, 80)
+	MinimizerBox.BackgroundTransparency = 0.3
+	MinimizerBox.BorderSizePixel = 0
+	MinimizerBox.Position = UDim2.new(0.02, 0, 0.02, 0)
+	MinimizerBox.Size = UDim2.new(0, 50, 0, 50)
+	MinimizerBox.ZIndex = 10
+	MinimizerBox.Visible = false
+
+	MinimizerCorner.CornerRadius = UDim.new(0, 12)
+	MinimizerCorner.Parent = MinimizerBox
+
+	MinimizerStroke.Parent = MinimizerBox
+	MinimizerStroke.Color = Color3.fromRGB(60, 150, 255)
+	MinimizerStroke.Thickness = 2
+	MinimizerStroke.Transparency = 0.3
+
+	MinimizerIcon.Parent = MinimizerBox
+	MinimizerIcon.BackgroundTransparency = 1
+	MinimizerIcon.Position = UDim2.new(0.1, 0, 0.1, 0)
+	MinimizerIcon.Size = UDim2.new(0.8, 0, 0.8, 0)
+	MinimizerIcon.Image = "rbxassetid://120242305941983"
+	MinimizerIcon.ScaleType = Enum.ScaleType.Fit
+	MinimizerIcon.ZIndex = 11
+
+	MinimizerButton.Parent = MinimizerBox
+	MinimizerButton.BackgroundTransparency = 1
+	MinimizerButton.Size = UDim2.new(1, 0, 1, 0)
+	MinimizerButton.ZIndex = 12
+	MinimizerButton.Text = ""
+
 	-- ========== EXTENSION ==========
 	Extension.Name = "Extension"
 	Extension.Parent = TopBar
@@ -189,6 +250,72 @@ function Lib.Window(Title)
 	ContentHolder.Parent = Main
 	
 	Lib:Drag(TopBar, Main)
+	Lib:Drag(MinimizerBox, MinimizerBox)
+	
+	-- ========== MINIMIZE/MAXIMIZE LOGIC ==========
+	local isMinimized = false
+	
+	local function toggleMinimize()
+		local ClickSound = Instance.new("Sound")
+		ClickSound.Parent = UiLib
+		ClickSound.SoundId = "rbxassetid://552900451"
+		ClickSound.Volume = 2
+		
+		if not isMinimized then
+			-- Minimize
+			ClickSound.Pitch = 0.8
+			Main.Visible = false
+			MinimizerBox.Visible = true
+			isMinimized = true
+		else
+			-- Maximize
+			ClickSound.Pitch = 1
+			Main.Visible = true
+			MinimizerBox.Visible = false
+			isMinimized = false
+		end
+		
+		ClickSound:Play()
+		wait(0.5)
+		ClickSound:Destroy()
+	end
+	
+	MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
+	MinimizerButton.MouseButton1Click:Connect(toggleMinimize)
+	
+	-- Hover effects for minimize button
+	MinimizeButton.MouseEnter:Connect(function()
+		tweenService:Create(MinimizeButton, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {
+			BackgroundTransparency = 0.05
+		}):Play()
+	end)
+
+	MinimizeButton.MouseLeave:Connect(function()
+		tweenService:Create(MinimizeButton, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {
+			BackgroundTransparency = 0.2
+		}):Play()
+	end)
+	
+	-- Hover effects for minimizer box
+	MinimizerButton.MouseEnter:Connect(function()
+		tweenService:Create(MinimizerBox, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {
+			BackgroundTransparency = 0.1,
+			Size = UDim2.new(0, 55, 0, 55)
+		}):Play()
+		tweenService:Create(MinimizerStroke, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {
+			Transparency = 0.1
+		}):Play()
+	end)
+
+	MinimizerButton.MouseLeave:Connect(function()
+		tweenService:Create(MinimizerBox, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {
+			BackgroundTransparency = 0.3,
+			Size = UDim2.new(0, 50, 0, 50)
+		}):Play()
+		tweenService:Create(MinimizerStroke, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {
+			Transparency = 0.3
+		}):Play()
+	end)
 	
 	-- ========== TOGGLE UI FUNCTION ==========
 	function Lib:ToggleUI()
